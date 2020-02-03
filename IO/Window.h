@@ -30,10 +30,19 @@
 #ifdef WINDOWS
 #include <direct.h>
 #define GetCurrentDir _getcwd
-#else
+#elif __linux__
 #include <unistd.h>
-//#include <GL/gl.h>
 #define GetCurrentDir getcwd
+//#include <GL/gl.h>
+#else
+#include <switch.h>
+//#define GL_PROJECTION 0x1701
+//#define glMatrixMode qglMatrixMode
+#include <unistd.h>
+#define GetCurrentDir getcwd
+//#include <GL/gl.h>
+//#include <EGL/egl.h>    // EGL library
+//#include <EGL/eglext.h> // EGL extensions
 #endif
 #include<iostream>
 

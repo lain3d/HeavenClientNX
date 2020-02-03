@@ -17,16 +17,40 @@
 //////////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include <cstdint>
+#include "../MapleStory.h"
 
-#ifdef __SWITCH__
-#include "unistd.h"
-#endif
+#ifdef USE_MBEDTLS
+#include "NetConstants.h"
+
+#define BOOST_DATE_TIME_NO_LIB
+#define BOOST_REGEX_NO_LIB
 
 namespace ms
 {
-	const size_t HEADER_LENGTH = 4;
-	const size_t OPCODE_LENGTH = 2;
-	const size_t MIN_PACKET_LENGTH = HEADER_LENGTH + OPCODE_LENGTH;
-	const size_t MAX_PACKET_LENGTH = 131072;
+#ifndef USE_CRYPTO
+    const std::size_t HANDSHAKE_LEN = 2;
+#else
+    const std::size_t HANDSHAKE_LEN = 16;
+#endif
+
+    // Class that wraps an asio socket.
+    class SocketMbedtls
+    {
+    public:
+        SocketMbedtls();
+        ~SocketMbedtls();
+
+        bool open(const char* address, const char* port);
+        bool close();
+        std::size_t receive(bool* connected);
+        const int8_t* get_buffer() const;
+        bool dispatch(const int8_t* bytes, std::size_t length);
+
+    private:
+        //io_service ioservice;
+        //tcp::resolver resolver;
+        //tcp::socket socket;
+        int8_t buffer[MAX_PACKET_LENGTH];
+    };
 }
+#endif

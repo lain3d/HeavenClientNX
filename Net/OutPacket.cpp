@@ -21,6 +21,10 @@
 
 #include "../Configuration.h"
 
+#ifdef __SWITCH__
+#include <string.h>
+#endif
+
 #include <chrono>
 
 namespace ms

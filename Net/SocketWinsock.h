@@ -19,7 +19,7 @@
 
 #include "../MapleStory.h"
 
-#ifndef USE_ASIO
+#ifdef USE_WINSOCK
 #include "NetConstants.h"
 
 #include <cstdlib>

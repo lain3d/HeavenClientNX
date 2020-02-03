@@ -41,8 +41,8 @@ namespace ms
 			// The top left corner will have coordinates (0, 0) and the bottom right corner will have coordinates (horizontal, vertical)
 			//Configuration::get().set_max_width(desktop.right);
 			//Configuration::get().set_max_height(desktop.bottom);
-			Configuration::get().set_max_width(2560);
-			Configuration::get().set_max_height(1440);
+			Configuration::get().set_max_width(1280);
+			Configuration::get().set_max_height(720);
 		}
 	};
 }

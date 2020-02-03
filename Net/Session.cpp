@@ -126,25 +126,25 @@ namespace ms
 		if (!connected)
 			return;
 
-		int8_t header[HEADER_LENGTH];
+		/*int8_t header[HEADER_LENGTH];
 		cryptography.create_header(header, packet_length);
 		cryptography.encrypt(packet_bytes, packet_length);
 
 		socket.dispatch(header, HEADER_LENGTH);
-		socket.dispatch(packet_bytes, packet_length);
+		socket.dispatch(packet_bytes, packet_length);*/
 	}
 
 	void Session::read()
 	{
 		// Check if a packet has arrived. Handle if data is sufficient: 4 bytes(header) + 2 bytes(opcode) = 6.
-		size_t result = socket.receive(&connected);
+		/*size_t result = socket.receive(&connected);
 
 		if (result >= MIN_PACKET_LENGTH || length > 0)
 		{
 			// Retrieve buffer from the socket and process it.
 			const int8_t* bytes = socket.get_buffer();
 			process(bytes, result);
-		}
+		}*/
 	}
 
 	void Session::reconnect()

@@ -17,7 +17,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 #include "SocketWinsock.h"
 
-#ifndef USE_ASIO
+#ifdef USE_WINSOCK
 #include <WinSock2.h>
 #include <ws2tcpip.h>
 

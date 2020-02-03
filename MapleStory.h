@@ -18,9 +18,18 @@
 
 // Define program attributes here
 
-// USE_ASIO : Use asio for networking, if not defined use Winsock.
-#ifdef __linux__
+// USE_ASIO : Use asio for networking, if not defined use Winsock. TODO: rich
+
+#if defined(__SWITCH__)
+#define USE_MBEDTLS
+#endif
+
+#if defined(__linux__)
 #define USE_ASIO
+#endif
+
+#if defined(WIN32)
+#define USE_WINSOCK
 #endif
 
 // USE_XXHASH : Use xxhash for file check (additional dependency)

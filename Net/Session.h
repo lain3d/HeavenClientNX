@@ -27,8 +27,12 @@
 
 #ifdef USE_ASIO
 #include "SocketAsio.h"
-#else
+#elif USE_WINSOCK
 #include "SocketWinsock.h"
+#else
+#include <string.h>
+#include "switch.h"
+#include "SocketMbedtls.h"
 #endif
 
 namespace ms
@@ -66,8 +70,10 @@ namespace ms
 
 #ifdef USE_ASIO
 		SocketAsio socket;
-#else
+#elif USE_WINSOCK
 		SocketWinsock socket;
+#else
+		SocketMbedtls socket;
 #endif
 	};
 }
