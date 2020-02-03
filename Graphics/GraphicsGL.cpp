@@ -83,11 +83,17 @@ namespace ms
 
 		// Initialize and configure
 		// ------------------------
-		if (GLenum error = glewInit())
-			return Error(Error::Code::GLEW, (const char*)glewGetErrorString(error));
+		//gladLoadGL();
+		//if (GLenum error = glewInit())
+		//	return Error(Error::Code::GLEW, (const char*)glewGetErrorString(error));
+
+        if(!gladLoadGL()) {
+            printf("Something went wrong!\n");
+            exit(-1);
+        }
 
 		std::cout << "Using OpenGL " << glGetString(GL_VERSION) << std::endl;
-		std::cout << "Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
+		//std::cout << "Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
 
 		if (FT_Init_FreeType(&ftlibrary))
 			return Error::Code::FREETYPE;

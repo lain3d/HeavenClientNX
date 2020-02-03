@@ -21,8 +21,8 @@
 
 #include "../Template/Singleton.h"
 
-#include <GL/glew.h>
-
+//#include <GL/glew.h>
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <string>
 #include <functional>
@@ -32,7 +32,7 @@
 #define GetCurrentDir _getcwd
 #else
 #include <unistd.h>
-#include <GL/gl.h>
+//#include <GL/gl.h>
 #define GetCurrentDir getcwd
 #endif
 #include<iostream>

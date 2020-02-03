@@ -439,7 +439,7 @@ add_executable(HeavenClient
         Timer.h)
 
 target_link_libraries(HeavenClient /home/rich/HeavenClient/HeavenClient/nlnx/build/libNoLifeNx.a)
-TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}}/nlnx)
+TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/nlnx)
 #target_link_libraries(HeavenClient /home/rich/HeavenClient/HeavenClient/nlnx/)
 target_link_libraries(HeavenClient lz4)
 
@@ -451,11 +451,15 @@ ENDIF(NOT FREETYPE_FOUND)
 INCLUDE_DIRECTORIES(${FREETYPE_INCLUDE_DIRS})
 TARGET_LINK_LIBRARIES(HeavenClient ${FREETYPE_LIBRARIES})
 
+TARGET_LINK_LIBRARIES(HeavenClient "${PROJECT_SOURCE_DIR}/glad/build/libglad.a")
+TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/glad/build/include)
+
 TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}}/glfw-3.3.2)
 target_link_libraries(HeavenClient glfw3)
 target_link_libraries(HeavenClient GL)
-target_link_libraries(HeavenClient GLEW)
+#target_link_libraries(HeavenClient GLEW)
 target_link_libraries(HeavenClient X11)
 target_link_libraries(HeavenClient dl)
 target_link_libraries(HeavenClient pthread)
 TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}}/stb)
+
