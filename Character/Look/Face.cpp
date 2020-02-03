@@ -88,7 +88,7 @@ namespace ms
 		}
 
 		// TODO: (rich) fix
-		name = "woo"; // nl::nx::string["Eqp.img"]["Eqp"]["Face"][std::to_string(faceid)]["name"];
+		name = std::string(nl::nx::string["Eqp.img"]["Eqp"]["Face"][std::to_string(faceid)]["name"]);
 	}
 
 	void Face::draw(Expression::Id expression, uint8_t frame, const DrawArgument& args) const

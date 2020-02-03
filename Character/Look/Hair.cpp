@@ -62,8 +62,7 @@ namespace ms
 			}
 		}
 
-		// TODO: (rich) fix
-		name = "woo"; // nl::nx::string["Eqp.img"]["Eqp"]["Hair"][std::to_string(hairid)]["name"];
+		name = std::string(nl::nx::string["Eqp.img"]["Eqp"]["Hair"][std::to_string(hairid)]["name"]);
 
 		constexpr size_t NUM_COLORS = 8;
 

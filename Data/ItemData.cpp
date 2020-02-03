@@ -77,9 +77,8 @@ namespace ms
 			cashitem = src["cash"].get_bool();
 			gender = get_item_gender(itemid);
 
-			// TODO: fix (Rich)
-			name = "woo"; //strsrc["name"];
-			desc = "woo"; //strsrc["desc"];
+			name = std::string(strsrc["name"]);
+			desc = std::string(strsrc["desc"]);
 
 			valid = true;
 		}
