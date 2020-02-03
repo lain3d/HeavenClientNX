@@ -105,7 +105,7 @@ namespace ms
 		void spend_sp(int32_t skill_id);
 
 		Job::Level joblevel_by_tab(uint16_t tab) const;
-		UISkillbook::SkillDisplayMeta* skill_by_position(Point<int16_t> cursorpos) const;
+		const UISkillbook::SkillDisplayMeta* skill_by_position(Point<int16_t> cursorpos) const;
 
 		void close();
 		bool check_required(int32_t id) const;

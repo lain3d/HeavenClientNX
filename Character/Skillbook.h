@@ -39,7 +39,7 @@ namespace ms
 		std::map<int32_t, int32_t> collect_passives() const;
 
 		// Return id and level of all required skills.
-		std::unordered_map<int32_t, int32_t> Skillbook::collect_required(int32_t id) const;
+		std::unordered_map<int32_t, int32_t> collect_required(int32_t id) const;
 
 	private:
 		struct SkillEntry

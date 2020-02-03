@@ -17,37 +17,51 @@
 //////////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include "MapObjects.h"
-#include "Reactor.h"
+#include "MapObject.h"
 
-#include "../Spawn.h"
+#include "../Graphics/Animation.h"
 
-#include <queue>
+#include "../Gameplay/Physics/Physics.h"
+
+#include <vector>
+#include <map>
 
 namespace ms
 {
-	// Collection of reactors on a map.
-	class MapReactors
+	class Reactor : public MapObject
 	{
 	public:
-		// Draw all reactors on a layer.
-		void draw(Layer::Id layer, double viewx, double viewy, float alpha) const;
-		// Update all reactors.
-		void update(const Physics& physics);
+		Reactor(int32_t oid, int32_t rid, int8_t state, Point<int16_t> position);
 
-		// Trigger a reactor.
-		void trigger(int32_t oid, int8_t state);
-		// Spawn a new reactor.
-		void spawn(ReactorSpawn&& spawn);
-		// Remove a reactor.
-		void remove(int32_t oid, int8_t state, Point<int16_t> position);
-		// Remove all reactors.
-		void clear();
-		MapObjects* MapReactors::get_reactors();
+		void draw(double viewx, double viewy, float alpha) const override;
+		int8_t update(const Physics& physics);
+
+		void set_state(int8_t state);
+		void destroy(int8_t state, Point<int16_t> position);
+
+		bool is_hittable() const;
+
+		// Check if this mob collides with the specified rectangle.
+		bool is_in_range(const Rectangle<int16_t>& range) const;
 
 	private:
-		MapObjects reactors;
+		int32_t oid;
+		int32_t rid;
+		int8_t state;
+		//int8_t stance; // TODO: ??
+		// TODO: These are in the GMS client
+		//bool movable; // TODO: Snowball?
+		//int32_t questid;
+		//bool activates_by_touch;
 
-		std::queue<ReactorSpawn> spawns;
+		nl::node src;
+		std::map<int8_t, Animation> animations;
+		bool animation_ended;
+
+		bool active;
+		bool hittable;
+		bool dead;
+
+		Animation normal;
 	};
 }

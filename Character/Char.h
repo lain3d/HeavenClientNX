@@ -27,8 +27,10 @@
 #include "../Graphics/EffectLayer.h"
 
 #include "../Gameplay/Combat/DamageNumber.h"
-#include "../Gameplay/Maplemap/Mapobject.h"
+#include "../Gameplay/MapleMap/MapObject.h"
 #include "../IO/Components/ChatBalloon.h"
+
+#include "math.h"
 
 namespace ms
 {

@@ -32,7 +32,7 @@ namespace ms
 
 		icon = src["info"]["icon"];
 
-		name = strsrc["bookName"];
+		name = std::string(strsrc["bookName"]);
 
 		for (nl::node sub : src["skill"])
 		{

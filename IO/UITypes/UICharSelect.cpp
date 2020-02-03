@@ -18,7 +18,7 @@
 #include "UICharSelect.h"
 #include "UIWorldSelect.h"
 #include "UIRaceSelect.h"
-#include "UISoftkey.h"
+#include "UISoftKey.h"
 #include "UILoginNotice.h"
 
 #include "../UI.h"
@@ -32,7 +32,9 @@
 #include "../Net/Packets/SelectCharPackets.h"
 
 #define NOMINMAX
+#ifdef WIN32
 #include <windows.h>
+#endif
 
 #include <nlnx/nx.hpp>
 
@@ -197,7 +199,7 @@ namespace ms
 		std::string total = pad_number_with_leading_zero(page_count);
 		std::string current = pad_number_with_leading_zero(selected_page + 1);
 
-		std::list<int8_t> fliplist = { 2, 3, 6, 7 };
+		std::list<uint8_t> fliplist = { 2, 3, 6, 7 };
 
 		for (size_t i = 0; i < PAGESIZE; i++)
 		{
@@ -633,7 +635,7 @@ namespace ms
 					SelectCharPicPacket(pic, id).dispatch();
 				};
 
-				UI::get().emplace<UISoftkey>(onok);
+				UI::get().emplace<UISoftKey>(onok);
 			}
 			break;
 			case 2:
@@ -685,7 +687,7 @@ namespace ms
 						chatslotlabel.change_text(get_slot_text());
 					};
 
-					UI::get().emplace<UISoftkey>(onok, oncancel);
+					UI::get().emplace<UISoftKey>(onok, oncancel);
 				};
 
 				const StatsEntry& character_stats = characters[selected_character].stats;
@@ -742,7 +744,8 @@ namespace ms
 		{
 			std::string url = Configuration::get().get_resetpic();
 
-			ShellExecute(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
+			// TODO: (rich) fix
+			//ShellExecute(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
 		}
 		break;
 		case Buttons::EDITCHARLIST:
@@ -938,10 +941,10 @@ namespace ms
 				}
 			};
 
-			UI::get().emplace<UISoftkey>(verifypic, []() {}, "Please re-enter your new PIC.", Point<int16_t>(24, 0));
+			UI::get().emplace<UISoftKey>(verifypic, []() {}, "Please re-enter your new PIC.", Point<int16_t>(24, 0));
 		};
 
-		UI::get().emplace<UISoftkey>(enterpic, []() {}, "Your new PIC must at least be 6 characters long.", Point<int16_t>(24, 0));
+		UI::get().emplace<UISoftKey>(enterpic, []() {}, "Your new PIC must at least be 6 characters long.", Point<int16_t>(24, 0));
 	}
 
 	void UICharSelect::check_pic(const std::string entered_pic) const

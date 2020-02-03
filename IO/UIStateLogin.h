@@ -24,6 +24,7 @@
 #include "../Template/EnumMap.h"
 
 #include <memory>
+#include <list>
 
 namespace ms
 {
@@ -54,7 +55,8 @@ namespace ms
 		void remove(UIElement::Type type) override;
 		UIElement* get(UIElement::Type type) override;
 		UIElement* get_front();
-		UIElement* get_front(std::list<UIElement::Type> types) override;
+		// TODO: (rich) fix
+		//UIElement* get_front(std::list<UIElement::Type> types) override;
 		UIElement* get_front(Point<int16_t> pos) override;
 		int64_t get_uptime() override { return 0; }
 		uint16_t get_uplevel() override { return 0; }

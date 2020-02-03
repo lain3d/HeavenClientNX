@@ -26,7 +26,9 @@
 
 #include "../Net/Packets/LoginPackets.h"
 
+#ifdef WIN32
 #include <windows.h>
+#endif
 
 #include <nlnx/nx.hpp>
 
@@ -224,7 +226,8 @@ namespace ms
 			return;
 		}
 
-		ShellExecute(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
+		// TODO: (rich) fix
+		//ShellExecute(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
 	}
 
 	Button::State UILogin::button_pressed(uint16_t id)

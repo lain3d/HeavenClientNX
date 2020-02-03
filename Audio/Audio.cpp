@@ -20,7 +20,7 @@
 #include "../Configuration.h"
 
 #define WIN32_LEAN_AND_MEAN
-#include <bass.h>
+//#include <bass.h>
 
 #include <nlnx/nx.hpp>
 #include <nlnx/audio.hpp>
@@ -70,8 +70,8 @@ namespace ms
 
 	Error Sound::init()
 	{
-		if (!BASS_Init(1, 44100, 0, nullptr, 0))
-			return Error::Code::AUDIO;
+		//if (!BASS_Init(1, 44100, 0, nullptr, 0))
+		//	return Error::Code::AUDIO;
 
 		nl::node uisrc = nl::nx::sound["UI.img"];
 
@@ -108,20 +108,20 @@ namespace ms
 
 		uint8_t volume = Setting<SFXVolume>::get().load();
 
-		if (!set_sfxvolume(volume))
-			return Error::Code::AUDIO;
+		//if (!set_sfxvolume(volume))
+		//	return Error::Code::AUDIO;
 
 		return Error::Code::NONE;
 	}
 
 	void Sound::close()
 	{
-		BASS_Free();
+		//BASS_Free();
 	}
 
 	bool Sound::set_sfxvolume(uint8_t vol)
 	{
-		return BASS_SetConfig(BASS_CONFIG_GVOL_SAMPLE, vol * 100) == TRUE;
+		return false; //BASS_SetConfig(BASS_CONFIG_GVOL_SAMPLE, vol * 100) == TRUE;
 	}
 
 	void Sound::play(size_t id)
@@ -129,8 +129,8 @@ namespace ms
 		if (!samples.count(id))
 			return;
 
-		HCHANNEL channel = BASS_SampleGetChannel((HSAMPLE)samples.at(id), false);
-		BASS_ChannelPlay(channel, true);
+		//HCHANNEL channel = BASS_SampleGetChannel((HSAMPLE)samples.at(id), false);
+		//BASS_ChannelPlay(channel, true);
 	}
 
 	size_t Sound::add_sound(nl::node src)
@@ -146,7 +146,7 @@ namespace ms
 			if (samples.find(id) != samples.end())
 				return 0;
 
-			samples[id] = BASS_SampleLoad(true, data, 82, (DWORD)ad.length(), 4, BASS_SAMPLE_OVER_POS);
+			//samples[id] = BASS_SampleLoad(true, data, 82, (DWORD)ad.length(), 4, BASS_SAMPLE_OVER_POS);
 
 			return id;
 		}
@@ -191,7 +191,7 @@ namespace ms
 
 	void Music::play() const
 	{
-		static HSTREAM stream = 0;
+		//static HSTREAM stream = 0;
 		static std::string bgmpath = "";
 
 		if (path == bgmpath)
@@ -202,14 +202,14 @@ namespace ms
 
 		if (data)
 		{
-			if (stream)
-			{
-				BASS_ChannelStop(stream);
-				BASS_StreamFree(stream);
-			}
+			//if (stream)
+			//{
+				//BASS_ChannelStop(stream);
+				//BASS_StreamFree(stream);
+			//}
 
-			stream = BASS_StreamCreateFile(true, data, 82, ad.length(), BASS_SAMPLE_FLOAT | BASS_SAMPLE_LOOP);
-			BASS_ChannelPlay(stream, true);
+			//stream = BASS_StreamCreateFile(true, data, 82, ad.length(), BASS_SAMPLE_FLOAT | BASS_SAMPLE_LOOP);
+			//BASS_ChannelPlay(stream, true);
 
 			bgmpath = path;
 		}
@@ -217,7 +217,7 @@ namespace ms
 
 	void Music::play_once() const
 	{
-		static HSTREAM stream = 0;
+		//static HSTREAM stream = 0;
 		static std::string bgmpath = "";
 
 		if (path == bgmpath)
@@ -228,14 +228,14 @@ namespace ms
 
 		if (data)
 		{
-			if (stream)
-			{
-				BASS_ChannelStop(stream);
-				BASS_StreamFree(stream);
-			}
+			//if (stream)
+			//{
+				//BASS_ChannelStop(stream);
+				//BASS_StreamFree(stream);
+			//}
 
-			stream = BASS_StreamCreateFile(true, data, 82, ad.length(), BASS_SAMPLE_FLOAT);
-			BASS_ChannelPlay(stream, true);
+			//stream = BASS_StreamCreateFile(true, data, 82, ad.length(), BASS_SAMPLE_FLOAT);
+			//BASS_ChannelPlay(stream, true);
 
 			bgmpath = path;
 		}
@@ -245,14 +245,14 @@ namespace ms
 	{
 		uint8_t volume = Setting<BGMVolume>::get().load();
 
-		if (!set_bgmvolume(volume))
-			return Error::Code::AUDIO;
+		//if (!set_bgmvolume(volume))
+		//	return Error::Code::AUDIO;
 
 		return Error::Code::NONE;
 	}
 
 	bool Music::set_bgmvolume(uint8_t vol)
 	{
-		return BASS_SetConfig(BASS_CONFIG_GVOL_STREAM, vol * 100) == TRUE;
+		return false; //BASS_SetConfig(BASS_CONFIG_GVOL_STREAM, vol * 100) == TRUE;
 	}
 }

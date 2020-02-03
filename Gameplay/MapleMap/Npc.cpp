@@ -60,8 +60,8 @@ namespace ms
 				lines[state].push_back(strsrc[speaknode.get_string()]);
 		}
 
-		name = strsrc["name"];
-		func = strsrc["func"];
+		name = std::string(strsrc["name"]);
+		func = std::string(strsrc["func"]);
 
 		namelabel = Text(Text::Font::A13B, Text::Alignment::CENTER, Color::Name::YELLOW, Text::Background::NAMETAG, name);
 		funclabel = Text(Text::Font::A13B, Text::Alignment::CENTER, Color::Name::YELLOW, Text::Background::NAMETAG, func);

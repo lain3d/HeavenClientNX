@@ -50,6 +50,7 @@ namespace ms
 		if (Error error = Sound::init())
 			return error;
 
+		// TODO: (rich) fix
 		if (Error error = Music::init())
 			return error;
 

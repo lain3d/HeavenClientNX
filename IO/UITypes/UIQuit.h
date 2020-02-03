@@ -20,7 +20,7 @@
 #include "../UIElement.h"
 
 #include "../Components/Charset.h"
-#include "../Character/Charstats.h"
+#include "Character/CharStats.h"
 #include "../Graphics/Text.h"
 #include "../Graphics/Geometry.h"
 

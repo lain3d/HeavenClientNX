@@ -29,7 +29,7 @@
 
 #include "../Template/EnumMap.h"
 #include "../Template/Optional.h"
-#include "../Character/Charstats.h"
+#include "Character/CharStats.h"
 
 #include <list>
 #include <memory>
@@ -62,7 +62,8 @@ namespace ms
 		Iterator pre_add(UIElement::Type type, bool toggled, bool focused);
 		void remove(UIElement::Type type) override;
 		UIElement* get(UIElement::Type type) override;
-		UIElement* get_front(std::list<UIElement::Type> types) override;
+		// TODO: (rich) fix
+		//UIElement* get_front(std::list<UIElement::Type> types) override;
 		UIElement* get_front(Point<int16_t> pos) override;
 		int64_t get_uptime() override;
 		uint16_t get_uplevel() override;

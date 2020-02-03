@@ -95,6 +95,8 @@ namespace ms
 					if (Setting<SaveLogin>::get().load())
 						Setting<DefaultAccount>::get().save(account.name);
 
+					//AfterLoginPacket("1111").dispatch();
+
 					// Request the list of worlds and channels online.
 					ServerRequestPacket().dispatch();
 				}

@@ -15,36 +15,39 @@
 //	You should have received a copy of the GNU Affero General Public License	//
 //	along with this program.  If not, see <https://www.gnu.org/licenses/>.		//
 //////////////////////////////////////////////////////////////////////////////////
-#include "MapEffect.h"
+#pragma once
 
-#include "../Constants.h"
+#include "MapObjects.h"
+#include "Reactor.h"
 
-#include <nlnx\nx.hpp>
+#include "../Spawn.h"
+
+#include <queue>
 
 namespace ms
 {
-	MapEffect::MapEffect(std::string path) : active(false)
+	// Collection of reactors on a map.
+	class MapReactors
 	{
-		nl::node Effect = nl::nx::map["Effect.img"];
+	public:
+		// Draw all reactors on a layer.
+		void draw(Layer::Id layer, double viewx, double viewy, float alpha) const;
+		// Update all reactors.
+		void update(const Physics& physics);
 
-		effect = Effect.resolve(path);
+		// Trigger a reactor.
+		void trigger(int32_t oid, int8_t state);
+		// Spawn a new reactor.
+		void spawn(ReactorSpawn&& spawn);
+		// Remove a reactor.
+		void remove(int32_t oid, int8_t state, Point<int16_t> position);
+		// Remove all reactors.
+		void clear();
+		MapObjects* get_reactors();
 
-		int16_t width = Constants::Constants::get().get_viewwidth();
+	private:
+		MapObjects reactors;
 
-		position = Point<int16_t>(width / 2, 250);
-	}
-
-	MapEffect::MapEffect() {}
-
-	void MapEffect::draw() const
-	{
-		if (!active)
-			effect.draw(position, 1.0f);
-	}
-
-	void MapEffect::update()
-	{
-		if (!active)
-			active = effect.update(6);
-	}
+		std::queue<ReactorSpawn> spawns;
+	};
 }

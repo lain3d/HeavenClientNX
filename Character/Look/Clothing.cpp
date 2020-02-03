@@ -76,7 +76,8 @@ namespace ms
 		nl::node src = nl::nx::character[category][strid + ".img"];
 		nl::node info = src["info"];
 
-		vslot = info["vslot"];
+		// TODO: (rich) fix
+		//vslot = info["vslot"];
 
 		switch (int32_t standno = info["stand"])
 		{

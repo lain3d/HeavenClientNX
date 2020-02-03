@@ -36,8 +36,8 @@
 
 #include "../Gameplay/Combat/Attack.h"
 #include "../Gameplay/Combat/Skill.h"
-#include "../Gameplay/Maplemap/Layer.h"
-#include "../Gameplay/Maplemap/MapInfo.h"
+#include "../Gameplay/MapleMap/Layer.h"
+#include "../Gameplay/MapleMap/MapInfo.h"
 #include "../Gameplay/Physics/Physics.h"
 
 namespace ms

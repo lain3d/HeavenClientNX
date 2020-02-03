@@ -19,7 +19,7 @@
 
 #include "Attack.h"
 
-#include "../Maplemap/Mob.h"
+#include "../MapleMap/Mob.h"
 #include "../Character/Char.h"
 #include "../Character/Job.h"
 

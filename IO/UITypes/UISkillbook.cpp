@@ -801,7 +801,7 @@ namespace ms
 		}
 	}
 
-	UISkillbook::SkillDisplayMeta* UISkillbook::skill_by_position(Point<int16_t> cursorpos) const
+	const UISkillbook::SkillDisplayMeta* UISkillbook::skill_by_position(Point<int16_t> cursorpos) const
 	{
 		int16_t x = cursorpos.x();
 
@@ -830,9 +830,11 @@ namespace ms
 		if (skill_idx >= skills.size())
 			return nullptr;
 
-		auto iter = skills.begin() + skill_idx;
+		auto iter = skills.data() + skill_idx;
 
-		return iter._Ptr;
+
+		// TODO: (rich) see if works properly.
+		return iter;
 	}
 
 	void UISkillbook::close()

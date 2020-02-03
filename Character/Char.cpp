@@ -36,7 +36,7 @@ namespace ms
 		if (invincible)
 		{
 			float phi = invincible.alpha() * 30;
-			float rgb = 0.9f - 0.5f * std::abs(std::sinf(phi));
+			float rgb = 0.9f - 0.5f * std::abs(std::sin(phi));
 
 			color = Color(rgb, rgb, rgb, 1.0f);
 		}

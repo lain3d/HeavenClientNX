@@ -295,7 +295,7 @@ namespace ms
 			WorldMap = nl::nx::map["WorldMap"]["WorldMap.img"];
 
 		base_img = WorldMap["BaseImg"][0];
-		parent_map = WorldMap["info"]["parentMap"];
+		parent_map = std::string(WorldMap["info"]["parentMap"]);
 
 		link_images.clear();
 		link_maps.clear();
@@ -313,7 +313,7 @@ namespace ms
 			Texture link_image = l["linkImg"];
 
 			link_images[i] = link_image;
-			link_maps[i] = l["linkMap"];
+			link_maps[i] = std::string(l["linkMap"]);
 
 			buttons[i] = std::make_unique<AreaButton>(base_position - link_image.get_origin(), link_image.get_dimensions());
 			buttons[i]->set_active(true);

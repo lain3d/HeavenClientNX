@@ -26,8 +26,13 @@
 #include "../Graphics/GraphicsGL.h"
 
 #define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+// TODO: (rich) is needed?
+//#include <stb_image.h>
+#ifdef WIN32
 #include <Windows.h>
+#elif __linux__
+#include "stb/stb_image.h"
+#endif
 
 namespace ms
 {
@@ -179,13 +184,15 @@ namespace ms
 		glfwSetScrollCallback(glwnd, scroll_callback);
 		glfwSetWindowCloseCallback(glwnd, close_callback);
 
-		char buf[256];
-		GetCurrentDirectoryA(256, buf);
-		strcat(buf, "\\Icon.png");
+		/*char buf[256];
+		GetCurrentWorkingDir()
+		GetCurrentDirectoryA(256, buf);*/
+		std::string icon_path = GetCurrentWorkingDir() + "/Icon.png";
+		//strcat(buf, "\\Icon.png");
 
 		GLFWimage images[1];
 
-		auto stbi = stbi_load(buf, &images[0].width, &images[0].height, 0, 4);
+		auto stbi = stbi_load(icon_path.c_str(), &images[0].width, &images[0].height, 0, 4);
 
 		if (stbi == NULL)
 			return Error(Error::Code::MISSING_ICON, stbi_failure_reason());
@@ -294,5 +301,12 @@ namespace ms
 			initwindow();
 			glfwPollEvents();
 		}
+	}
+
+	std::string Window::GetCurrentWorkingDir( void ) {
+		char buff[FILENAME_MAX];
+		GetCurrentDir( buff, FILENAME_MAX );
+		std::string current_working_dir(buff);
+		return current_working_dir;
 	}
 }

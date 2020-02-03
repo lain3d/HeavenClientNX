@@ -206,7 +206,7 @@ namespace ms
 		}
 		else if (tab == Buttons::BT_TAB_FRIEND)
 		{
-			for each (auto sprite in friend_sprites)
+			for (auto sprite : friend_sprites)
 				sprite.draw(position, alpha);
 
 			friends_online_text.draw(position + Point<int16_t>(211, 62));
@@ -219,7 +219,7 @@ namespace ms
 		}
 		else if (tab == Buttons::BT_TAB_BOSS)
 		{
-			for each (auto sprite in boss_sprites)
+			for (auto sprite : boss_sprites)
 				sprite.draw(position, alpha);
 		}
 		else if (tab == Buttons::BT_TAB_BLACKLIST)
@@ -237,11 +237,11 @@ namespace ms
 		UIElement::update();
 
 		if (tab == Buttons::BT_TAB_FRIEND)
-			for each (auto sprite in friend_sprites)
+			for (auto sprite : friend_sprites)
 				sprite.update();
 
 		if (tab == Buttons::BT_TAB_BOSS)
-			for each (auto sprite in boss_sprites)
+			for (auto sprite : boss_sprites)
 				sprite.update();
 	}
 

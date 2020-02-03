@@ -91,9 +91,9 @@ namespace ms
 		}
 	}
 
-	void Textfield::set_enter_callback(std::function<void(std::string)> or )
+	void Textfield::set_enter_callback(std::function<void(std::string)> orr )
 	{
-		onreturn = or ;
+		onreturn = orr;
 	}
 
 	void Textfield::set_key_callback(KeyAction::Id key, std::function<void(void)> action)

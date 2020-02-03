@@ -21,9 +21,9 @@
 #include "RegularAttack.h"
 #include "Skill.h"
 
-#include "../Maplemap/MapChars.h"
-#include "../Maplemap/MapMobs.h"
-#include "../Maplemap/MapReactors.h"
+#include "../MapleMap/MapChars.h"
+#include "../MapleMap/MapMobs.h"
+#include "../MapleMap/MapReactors.h"
 #include "../Character/Player.h"
 #include "../Template/TimedQueue.h"
 

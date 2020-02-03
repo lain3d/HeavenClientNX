@@ -22,7 +22,7 @@
 #include "Handlers/SetfieldHandlers.h"
 #include "Handlers/PlayerHandlers.h"
 #include "Handlers/AttackHandlers.h"
-#include "Handlers/MapobjectHandlers.h"
+#include "Handlers/MapObjectHandlers.h"
 #include "Handlers/InventoryHandlers.h"
 #include "Handlers/MessagingHandlers.h"
 #include "Handlers/NpcInteractionHandlers.h"

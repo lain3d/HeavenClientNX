@@ -82,7 +82,7 @@ namespace ms
 		KeyConfig::Key key_by_position(Point<int16_t> position) const;
 		KeyAction::Id unbound_action_by_position(Point<int16_t> position) const;
 		Keyboard::Mapping get_staged_mapping(int32_t keycode) const;
-		bool UIKeyConfig::is_action_mapping(Keyboard::Mapping mapping) const;
+		bool is_action_mapping(Keyboard::Mapping mapping) const;
 		static KeyType::Id get_keytype(KeyAction::Id action);
 
 		enum Buttons : uint16_t

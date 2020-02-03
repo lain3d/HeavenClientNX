@@ -172,7 +172,7 @@ namespace ms
 		class_details[selected_class].draw(position);
 		class_title[selected_class].draw(position);
 
-		for each (auto node in hotlist)
+		for (const auto &node : hotlist)
 		{
 			if (node.get_integer() == selected_class)
 			{
@@ -185,7 +185,7 @@ namespace ms
 			}
 		}
 
-		for each (auto node in newlist)
+		for (const auto &node : newlist)
 		{
 			if (node.get_integer() == selected_class)
 			{
@@ -200,7 +200,7 @@ namespace ms
 
 			class_isdisabled[class_index[i]] ? class_disabled[class_index[i]][mouseover[i]].draw(position + button_pos) : class_normal[class_index[i]][mouseover[i]].draw(position + button_pos);
 
-			for each (auto node in hotlist)
+			for (const auto &node : hotlist)
 			{
 				if (node.get_integer() == class_index[i])
 				{
@@ -209,7 +209,7 @@ namespace ms
 				}
 			}
 
-			for each (auto node in newlist)
+			for (const auto &node : newlist)
 			{
 				if (node.get_integer() == selected_class)
 				{
@@ -241,7 +241,7 @@ namespace ms
 
 		back_ani.update();
 
-		for each (auto node in bgm)
+		for (const auto node : bgm)
 		{
 			uint8_t name = std::stoi(node.name());
 
@@ -352,7 +352,7 @@ namespace ms
 	{
 		nl::node ForbiddenName = nl::nx::etc["ForbiddenName.img"];
 
-		for each (std::string forbiddenName in ForbiddenName)
+		for (auto forbiddenName : ForbiddenName)
 		{
 			std::string lName = to_lower(name);
 			std::string fName = to_lower(forbiddenName);

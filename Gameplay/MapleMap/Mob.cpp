@@ -65,7 +65,7 @@ namespace ms
 		animations[Stance::HIT] = src["hit1"];
 		animations[Stance::DIE] = src["die1"];
 
-		name = nl::nx::string["Mob.img"][std::to_string(mid)]["name"];
+		name = std::string(nl::nx::string["Mob.img"][std::to_string(mid)]["name"]);
 
 		nl::node sndsrc = nl::nx::sound["Mob.img"][strid];
 

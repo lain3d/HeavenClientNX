@@ -23,9 +23,19 @@
 
 #include <GL/glew.h>
 
-#include <glfw3.h>
+#include <GLFW/glfw3.h>
 #include <string>
 #include <functional>
+
+#ifdef WINDOWS
+#include <direct.h>
+#define GetCurrentDir _getcwd
+#else
+#include <unistd.h>
+#include <GL/gl.h>
+#define GetCurrentDir getcwd
+#endif
+#include<iostream>
 
 namespace ms
 {
@@ -61,5 +71,6 @@ namespace ms
 		std::function<void()> fadeprocedure;
 		int16_t width;
 		int16_t height;
+        std::string GetCurrentWorkingDir(void);
 	};
 }

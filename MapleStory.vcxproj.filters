@@ -390,7 +390,7 @@
     <ClCompile Include="io\uitypes\UISkillbook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="io\uitypes\UISoftkey.cpp">
+    <ClCompile Include="io\uitypes\UISoftKey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="io\uitypes\UIStatsinfo.cpp">
@@ -980,7 +980,7 @@
     <ClInclude Include="io\uitypes\UISkillbook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="io\uitypes\UISoftkey.h">
+    <ClInclude Include="io\uitypes\UISoftKey.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="io\uitypes\UIStatsinfo.h">

@@ -15,7 +15,7 @@
 //	You should have received a copy of the GNU Affero General Public License	//
 //	along with this program.  If not, see <https://www.gnu.org/licenses/>.		//
 //////////////////////////////////////////////////////////////////////////////////
-#include "Mapportals.h"
+#include "MapPortals.h"
 
 #include "../Constants.h"
 #include "../Util/Misc.h"

@@ -49,7 +49,7 @@ namespace ms
 		textures[Button::State::DISABLED][1] = src["disabled"][1];
 		textures[Button::State::DISABLED][2] = src["disabled"][2];
 
-		for each (auto option in options)
+		for (auto &option : options)
 			option_text.push_back(Text(Text::Font::A12M, Text::Alignment::LEFT, Color::Name::BLACK, option));
 
 		Text::Font selected_font = Text::Font::A12M;

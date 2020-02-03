@@ -39,8 +39,8 @@ namespace ms
 		icons = { src["icon"], src["iconDisabled"], src["iconMouseOver"] };
 
 		// Load strings
-		name = strsrc["name"];
-		desc = strsrc["desc"];
+		name = std::string(strsrc["name"]);
+		desc = std::string(strsrc["desc"]);
 
 		for (int32_t level = 1; nl::node sub = strsrc["h" + std::to_string(level)]; level++)
 			levels.emplace(level, sub);
@@ -74,7 +74,7 @@ namespace ms
 			);
 		}
 
-		element = src["elemAttr"];
+		element = std::string(src["elemAttr"]);
 
 		if (jobid == "900" || jobid == "910")
 			reqweapon = Weapon::Type::NONE;

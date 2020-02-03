@@ -19,7 +19,7 @@
 
 #include "Attack.h"
 
-#include "../Maplemap/Mob.h"
+#include "../MapleMap/Mob.h"
 #include "../Template/BoolPair.h"
 
 namespace ms

@@ -490,7 +490,7 @@ namespace ms
 	{
 		UIElement::update();
 
-		for each (auto sprite in hpmp_sprites)
+		for (auto sprite : hpmp_sprites)
 			sprite.update();
 
 		expbar.update(getexppercent());

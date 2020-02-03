@@ -24,6 +24,8 @@
 
 #include "../Character/Look/CharLook.h"
 
+#include <list>
+
 namespace ms
 {
 	// The character selection screen.

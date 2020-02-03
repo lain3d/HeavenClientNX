@@ -22,7 +22,7 @@
 
 #include "../Components/MapleButton.h"
 
-#include "../Gameplay/Maplemap/Npc.h"
+#include "../Gameplay/MapleMap/Npc.h"
 
 #include <nlnx/nx.hpp>
 

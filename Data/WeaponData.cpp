@@ -50,7 +50,8 @@ namespace ms
 			usesounds[true] = soundsrc["Attack"];
 		}
 
-		afterimage = src["afterImage"];
+		// TODO: (rich) fix
+		afterimage = (std::string) src["afterImage"];
 	}
 
 	bool WeaponData::is_valid() const
