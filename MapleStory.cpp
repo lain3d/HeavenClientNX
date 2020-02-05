@@ -38,21 +38,36 @@ namespace ms
 {
 	Error init()
 	{
-		if (Error error = Session::get().init())
-			return error;
+		if (Error error = Session::get().init()) {
+            return error;
+            if (error)
+                exit(error);
+        }
 
-		if (Error error = NxFiles::init())
-			return error;
+		if (Error error = NxFiles::init()) {
+            if (error)
+                exit(error);
+            return error;
+        }
 
-		if (Error error = Window::get().init())
-			return error;
+		if (Error error = Window::get().init()) {
+            if (error)
+                exit(error);
+            return error;
+        }
 
-		if (Error error = Sound::init())
-			return error;
+		if (Error error = Sound::init()) {
+            if (error)
+                exit(error);
+            return error;
+        }
 
 		// TODO: (rich) fix
-		if (Error error = Music::init())
-			return error;
+		if (Error error = Music::init()) {
+            if (error)
+                exit(error);
+            return error;
+        }
 
 		Char::init();
 		DamageNumber::init();
@@ -140,6 +155,7 @@ namespace ms
 			const char* args = error.get_args();
 			bool can_retry = error.can_retry();
 
+			exit(error);
 			std::cout << "Error: " << message << std::endl;
 
 			if (args && args[0])

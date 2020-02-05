@@ -516,5 +516,5 @@ set(GAMENAME "HeavenClient")
 add_custom_command(TARGET HeavenClient POST_BUILD
         COMMAND nacptool --create "${GAMENAME}" "rich" "1.0.0-nx" "${CMAKE_BINARY_DIR}/${NRONAME}.nacp"
         COMMAND aarch64-none-elf-strip -o "${CMAKE_BINARY_DIR}/${BINARY_NAME}_stripped" "${CMAKE_BINARY_DIR}/${BINARY_NAME}"
-        COMMAND elf2nro "${CMAKE_BINARY_DIR}/${BINARY_NAME}_stripped" "${CMAKE_BINARY_DIR}/${NRONAME}.nro" --icon="${CMAKE_SOURCE_DIR}/Icon.png" --nacp="${CMAKE_BINARY_DIR}/${NRONAME}.nacp"
+        COMMAND elf2nro "${CMAKE_BINARY_DIR}/${BINARY_NAME}" "${CMAKE_BINARY_DIR}/${NRONAME}.nro" --icon="${CMAKE_SOURCE_DIR}/Icon.png" --nacp="${CMAKE_BINARY_DIR}/${NRONAME}.nacp"
         )
