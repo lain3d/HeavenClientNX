@@ -19,11 +19,14 @@
 
 #include "../MapleStory.h"
 
-#ifdef USE_MBEDTLS
+//#ifdef USE_MBEDTLS
 #include "NetConstants.h"
+#include <mbedtls/net_sockets.h>
 
 #define BOOST_DATE_TIME_NO_LIB
 #define BOOST_REGEX_NO_LIB
+
+#define MBEDTLS_FD 202
 
 namespace ms
 {
@@ -47,10 +50,11 @@ namespace ms
         bool dispatch(const int8_t* bytes, std::size_t length);
 
     private:
+        mbedtls_net_context ctx;
         //io_service ioservice;
         //tcp::resolver resolver;
         //tcp::socket socket;
         int8_t buffer[MAX_PACKET_LENGTH];
     };
 }
-#endif
+//#endif

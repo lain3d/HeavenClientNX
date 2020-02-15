@@ -8,11 +8,11 @@
 namespace ms
 {
 	SocketMbedtls::SocketMbedtls() {
+		printf("mbedtls_net_context\n");
 	    ctx = mbedtls_net_context{MBEDTLS_FD};
+	    printf("mbedtls_net_init\n");
 	    mbedtls_net_init(&ctx);
-	    if (mbedtls_net_set_nonblock(&ctx)) {
-	    	printf("Error setting nonblock\n");
-	    }
+	    printf("finished socket init\n");
 	}
 
 	SocketMbedtls::~SocketMbedtls()
@@ -22,16 +22,19 @@ namespace ms
 	bool SocketMbedtls::open(const char* address, const char* port)
 	{
 		int status;
-		int error = mbedtls_net_connect(&ctx, address, port, MBEDTLS_NET_PROTO_TCP);
+		int error = mbedtls_net_connect(&ctx, "192.168.1.156"/*address*/, port, MBEDTLS_NET_PROTO_TCP);
 		int read;
 
 		if (!error) {
+			if (mbedtls_net_set_nonblock(&ctx)) {
+				printf("Error setting nonblock\n");
+			}
 			status = mbedtls_net_poll(&ctx, MBEDTLS_NET_POLL_READ, 20000); // todo: change timeout
 			if (status > 0) {
-				read = mbedtls_net_recv(&ctx, buffer, MAX_PACKET_LENGTH);
+				read = mbedtls_net_recv(&ctx, (unsigned char*) buffer, MAX_PACKET_LENGTH);
 				if (read < 0) // we are already blocking with poll, is this necesssary?
 					printf("Error reading from socket\n");
-				return (read == HANDSH) && !error;
+				return (read == HANDSHAKE_LEN) && !error;
 			}
 		} else {
 			printf("Socket error %x\n", error);
@@ -47,19 +50,28 @@ namespace ms
 
 	std::size_t SocketMbedtls::receive(bool* recvok)
 	{
-		int status;
-		mbedtls_net_
+		//int read = mbedtls_net_recv_timeout(&ctx, (unsigned char*) buffer, MAX_PACKET_LENGTH, 0);
+		int read = mbedtls_net_recv(&ctx, (unsigned char*) buffer, MAX_PACKET_LENGTH);
+		if (read > 0) {
+			*recvok = read > 0;
+			return (size_t) read;
+		}
 		return 0;
 	}
 
 	const int8_t* SocketMbedtls::get_buffer() const
 	{
-		return nullptr;
+		return buffer;
 	}
 
 	bool SocketMbedtls::dispatch(const int8_t* bytes, std::size_t length)
 	{
-		return false;
+		int status = mbedtls_net_poll(&ctx, MBEDTLS_NET_POLL_WRITE, 20000);
+		int result;
+		if (status > 0) {
+			result = mbedtls_net_send(&ctx, (unsigned char*) bytes, length);
+		}
+		return (status > 0) && result == length;
 	}
 }
 //#endif
