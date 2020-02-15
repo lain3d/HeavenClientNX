@@ -31,10 +31,13 @@ namespace ms
 
 	void Cursor::init()
 	{
+        printf("====> cursor::init\n");
 		nl::node src = nl::nx::ui["Basic.img"]["Cursor"];
 
 		for (auto iter : animations)
 			iter.second = src[iter.first];
+
+        printf("<==== cursor::init\n");
 	}
 
 	void Cursor::draw(float alpha) const

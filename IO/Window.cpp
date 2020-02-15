@@ -126,46 +126,63 @@ namespace ms
 
 	Error Window::init()
 	{
-		fullscreen = Setting<Fullscreen>::get().load();
+		printf("====> Window::init()\n");
+		//fullscreen = Setting<Fullscreen>::get().load();
 
 		if (!glfwInit())
 			return Error::Code::GLFW;
 
-		glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
-		context = glfwCreateWindow(1, 1, "", nullptr, nullptr);
-		glfwMakeContextCurrent(context);
-		glfwSetErrorCallback(error_callback);
-		glfwWindowHint(GLFW_VISIBLE, GL_TRUE);
-		glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+/*glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
+context = glfwCreateWindow(1, 1, "", nullptr, nullptr);
+glfwMakeContextCurrent(context);
+glfwSetErrorCallback(error_callback);
+glfwWindowHint(GLFW_VISIBLE, GL_TRUE);
+glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
-		if (Error error = GraphicsGL::get().init())
-			return error;
-
+		printf("<==== Window::init()\n");
 		return initwindow();
 	}
 
 	Error Window::initwindow()
 	{
+		printf("====> Window::initwindow()\n");
 		if (glwnd)
 			glfwDestroyWindow(glwnd);
 
+		glfwInitHint(GLFW_JOYSTICK_HAT_BUTTONS, GLFW_FALSE);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
+		printf("====> glfwCreateWindow\n");
 		glwnd = glfwCreateWindow(
-			width,
-			height,
-			Configuration::get().get_title().c_str(),
-			fullscreen ? glfwGetPrimaryMonitor() : nullptr,
-			context
+				1280,
+				720,
+				"MapleStory",
+				nullptr,
+				nullptr
 		);
-
-		if (!glwnd)
+		printf("<==== glfwCreateWindow\n");
+		if (!glwnd) {
+			printf("[!] Error calling glfwCreateWindow\n");
 			return Error::Code::WINDOW;
-
-		glfwMakeContextCurrent(glwnd);
+		}
 
 		bool vsync = Setting<VSync>::get().load();
+		printf("[*] vsync value: %d\n", vsync);
 		glfwSwapInterval(vsync ? 1 : 0);
+		glfwSetInputMode(glwnd, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
+		glfwMakeContextCurrent(glwnd);
+		printf("[*] made glwnd current context.\n");
+
+		if (Error error = GraphicsGL::get().init()) {
+			printf("[!] Error initializing graphics.\n");
+			return error;
+		}
+
+		printf("[*] glViewport. width %d height%d\n", width, height);
 		glViewport(0, 0, width, height);
+		printf("[*] glMatrixMode\n");
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
@@ -173,6 +190,7 @@ namespace ms
 
 		double xpos, ypos;
 
+		printf("[*] glfwGetCursorPos\n");
 		glfwGetCursorPos(glwnd, &xpos, &ypos);
 		cursor_callback(glwnd, xpos, ypos);
 
@@ -204,6 +222,7 @@ namespace ms
 
 		GraphicsGL::get().reinit();
 
+		printf("<==== Window::initwindow()\n");
 		return Error::Code::NONE;
 	}
 

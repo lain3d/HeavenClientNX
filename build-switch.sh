@@ -3,7 +3,7 @@
 BASEDIR=$(dirname "$0")
 echo ${BASEDIR}
 NCPU=`cat /proc/cpuinfo |grep vendor_id |wc -l`
-let NCPU=12
+let NCPU=10
 echo "Will build with 'make -j$NCPU' ... please edit this script if incorrect."
 
 #set -e

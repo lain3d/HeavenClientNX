@@ -29,11 +29,14 @@ namespace ms
 	Error NxFiles::init()
 	{
 		for (auto filename : NxFiles::filenames)
-			if (std::ifstream{ filename }.good() == false)
+			if (std::ifstream{ filename }.good() == false) {
+				printf("[!] Missing nx file\n");
 				return Error(Error::Code::MISSING_FILE, filename);
+			}
 
 		try
 		{
+			printf("[*] Loading all nx files\n");
 			nl::nx::load_all();
 		}
 		catch (const std::exception& ex)

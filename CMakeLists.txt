@@ -3,6 +3,7 @@ project(HeavenClient)
 
 set(CMAKE_CXX_STANDARD 17)
 
+
 if(SWITCH_LIBNX)
     add_definitions(-D__SWITCH__=1)
     add_definitions(-DSTATIC_LIBVORBIS=1)
@@ -452,7 +453,8 @@ add_executable(HeavenClient
         MapleStory.cpp
         MapleStory.h
         resource.h
-        Timer.h)
+        Timer.h
+        switch_wrapper.c)
 
 target_link_libraries(HeavenClient /home/rich/HeavenClient/HeavenClient/nlnx/switch-build/libNoLifeNx.a)
 TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/nlnx)
@@ -484,6 +486,9 @@ if(SWITCH_LIBNX)
     TARGET_LINK_LIBRARIES(HeavenClient png)
     target_link_libraries(HeavenClient "m")
     target_link_libraries(HeavenClient "z")
+    target_link_libraries(HeavenClient "mbedtls")
+    target_link_libraries(HeavenClient "mbedcrypto")
+
 #    target_link_libraries(HeavenClient "nx")
 endif()
 

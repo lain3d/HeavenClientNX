@@ -56,8 +56,8 @@ namespace ms
 		std::string HOST = Setting<ServerIP>::get().load();
 		std::string PORT = Setting<ServerPort>::get().load();
 
-		if (!init(HOST.c_str(), PORT.c_str()))
-			return Error::CONNECTION;
+		//if (!init(HOST.c_str(), PORT.c_str()))
+		//	return Error::CONNECTION;
 
 		return Error::NONE;
 	}

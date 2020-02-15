@@ -50,7 +50,9 @@ namespace ms
 
 	void UI::init()
 	{
+		printf("[*} initializing cursor.\n");
 		cursor.init();
+		printf("[*} changing state to login.\n");
 		change_state(State::LOGIN);
 	}
 
@@ -84,6 +86,7 @@ namespace ms
 
 	void UI::change_state(State id)
 	{
+		printf("====> UI::change_state\n");
 		switch (id)
 		{
 		case State::LOGIN:
@@ -93,6 +96,7 @@ namespace ms
 			state = std::make_unique<UIStateGame>();
 			break;
 		}
+		printf("<==== UI::change_state\n");
 	}
 
 	void UI::quit()
