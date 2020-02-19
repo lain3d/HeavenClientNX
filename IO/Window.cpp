@@ -34,6 +34,10 @@
 #include "stb/stb_image.h"
 #endif
 
+#ifdef __SWITCH__
+#include <switch.h>
+#endif
+
 namespace ms
 {
 	Window::Window()
@@ -62,6 +66,20 @@ namespace ms
 	}
 
 	std::chrono::time_point<std::chrono::steady_clock> start = ContinuousTimer::get().start();
+
+#ifdef __SWITCH__
+	void handleTouch() {
+        u32 touches = hidTouchCount();
+        touchPosition currentTouch;
+        if (touches == 0)
+            UI::get().send_cursor(false);
+        if (touches == 1) {
+            hidTouchRead(&currentTouch, 0);
+            UI::get().send_cursor(Point<int16_t>(currentTouch.px, currentTouch.py));
+            UI::get().send_cursor(true);
+        }
+	}
+#endif
 
 	void mousekey_callback(GLFWwindow*, int button, int action, int)
 	{
@@ -274,7 +292,9 @@ glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 			initwindow();
 		}
-
+#ifdef __SWITCH__
+        handleTouch();
+#endif
 		glfwPollEvents();
 	}
 
