@@ -1,0 +1,15 @@
+*~
+*.o
+*.bz2
+*.nro
+*.nso
+*.elf
+*.npdm
+*.pfs0
+Thumbs.db
+.DS_Store
+.*/
+debug/
+release/
+lib/
+docs/

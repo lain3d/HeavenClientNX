@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/lain3d/switch-glad
+	branch = master
+	commit = 0703792c420bf961c049faed578a905eed1db7b5
+	parent = b9df818e16fcfb28f9efb0e55bd1b311fef70312
+	method = merge
+	cmdver = 0.4.1
