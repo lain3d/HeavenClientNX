@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/lain3d/NoLifeNx
+	branch = switch
+	commit = 451e55708415b35e2c3c415a8896a3164f19559c
+	parent = b8bc8a73575bf0f2595fe3658e0b8d22a5a3cd33
+	method = merge
+	cmdver = 0.4.1
