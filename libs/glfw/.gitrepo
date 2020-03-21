@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/lain3d/glfw
+	branch = switch
+	commit = 4373905b73468c3f884f3a2560b592521a5a923e
+	parent = ef4ecc49ed5fa550dc1d316f5fe398f18f9d273d
+	method = merge
+	cmdver = 0.4.1
