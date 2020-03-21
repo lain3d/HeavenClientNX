@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/lain3d/alure
+	branch = master
+	commit = 8c183db86c72144c4b6225e66ecc26f831fcb4ce
+	parent = a9d8182edd5f1fa075d58c11d14f3ff073074d4e
+	method = merge
+	cmdver = 0.4.1
