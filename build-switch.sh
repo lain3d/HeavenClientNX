@@ -9,12 +9,10 @@ echo "Will build with 'make -j$NCPU' ... please edit this script if incorrect."
 #set -e
 #set -x
 
-#cd HeavenClient
-#rm -rf switch-build
-#mkdir $_
-#cd $_
-#cd HeavenClient 
-#cd switch_build
+rm -rf switch-build
+mkdir $_
+cd $_
+cd switch_build
 
 # IMPORTANT: run another build script first to at least get a ecc binary for your host platform
 
