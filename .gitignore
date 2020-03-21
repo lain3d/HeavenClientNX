@@ -6,8 +6,6 @@
 *.log
 *.tlog
 
-Settings
-
 /includes/**/*.sln
 /includes/**/*.vcxproj*
 /includes/**/*.txt

@@ -1,6 +1,31 @@
 # HeavenClient
 HeavenClient is a custom, made-from-scratch game client.
 
+# Switch Version
+
+## Building
+- Ensure you have setup DevkitPro by following the guide [here](https://switchbrew.org/wiki/Setting_up_Development_Environment)
+- Ensure you have all devkitpro dependencies (see below)
+- Run ```./build-deps.sh``` then ```./build-switch.sh```
+
+## Setting up your SD card
+- Move the resulting .nro from the switch-build directory to the ```switch``` directory of your SD card.
+- Copy all the .nx files (excluding MapPretty.nx and MapLatest.nx), the fonts folder, and the Settings file to the ```switch/HeavenClient``` directory
+
+## Quick changes / debugging 
+If for whatever reason the client doesn't start, you will probably want to figure out why. I've added debug prints in the majority of the startup phase. Also, the following method will let you update the client without moving it to your sd card each time.
+- Go to the nx-link tool located at ```/opt/devkitpro/tools/bin```
+- Run ./nxlink -a <switch_ip> -s -p ./HeavenClient.nro <location of your .nro>
+
+### Dependencies from DevkitPro 
+Not including the dependencies found in ```libs/``` you should check ```CMakeLists.txt``` and install any dependencies using pacman.
+
+### Rebuilding
+- Don't waste your time running ```./build-switch.sh``` every time, as it deletes the build directory; cd into switch-build and run make -jN (where N is number of cores)
+
+### Help
+- If you have any issues setting this up, feel free to message me on Discord at surge#1111
+
 # Supported versions
 The client is currently compatible with version 83 servers.
 The client has only been tested with [HeavenMS](https://github.com/ronancpl/HeavenMS).
