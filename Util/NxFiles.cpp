@@ -28,11 +28,13 @@ namespace ms
 {
 	Error NxFiles::init()
 	{
-		for (auto filename : NxFiles::filenames)
-			if (std::ifstream{ filename }.good() == false) {
-				printf("[!] Missing nx file\n");
-				return Error(Error::Code::MISSING_FILE, filename);
-			}
+		for (auto filename : NxFiles::filenames) {
+		    std::string path = "HeavenClient/" + std::string(filename);
+            if (!std::ifstream{path}.good()) {
+                printf("[!] Missing nx file\n");
+                return Error(Error::Code::MISSING_FILE, filename);
+            }
+        }
 
 		try
 		{

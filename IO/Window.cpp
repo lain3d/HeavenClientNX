@@ -179,6 +179,19 @@ glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 				nullptr,
 				nullptr
 		);
+
+
+		GLFWjoystickmapping joystick_config = { .y = Setting<Joystick_Y>::get().load(),
+									         .x = Setting<Joystick_X>::get().load(),
+									         .b = Setting<Joystick_B>::get().load(),
+			                        	     .a = Setting<Joystick_A>::get().load(),
+		                                     .lb = Setting<Joystick_LB>::get().load(),
+			                        	     .lt = Setting<Joystick_LT>::get().load(),
+			                        	     .rb = Setting<Joystick_RB>::get().load(),
+							                 .rt = Setting<Joystick_RT>::get().load()
+		};
+		glfwConfigureJoystickButtons(joystick_config);
+
 		printf("<==== glfwCreateWindow\n");
 		if (!glwnd) {
 			printf("[!] Error calling glfwCreateWindow\n");
@@ -223,20 +236,21 @@ glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 		/*char buf[256];
 		GetCurrentWorkingDir()
 		GetCurrentDirectoryA(256, buf);*/
-		std::string icon_path = GetCurrentWorkingDir() + "/Icon.png";
+		//printf("Current working dir: %s", GetCurrentWorkingDir());
+		//std::string icon_path = "HeavenClient/Icon.png";
 		//strcat(buf, "\\Icon.png");
 
-		GLFWimage images[1];
+		//GLFWimage images[1];
 
-		auto stbi = stbi_load(icon_path.c_str(), &images[0].width, &images[0].height, 0, 4);
+		//auto stbi = stbi_load(icon_path.c_str(), &images[0].width, &images[0].height, 0, 4);
 
-		if (stbi == NULL)
-			return Error(Error::Code::MISSING_ICON, stbi_failure_reason());
+		//if (stbi == NULL)
+		//	return Error(Error::Code::MISSING_ICON, stbi_failure_reason());
 
-		images[0].pixels = stbi;
+		//images[0].pixels = stbi;
 
-		glfwSetWindowIcon(glwnd, 1, images);
-		stbi_image_free(images[0].pixels);
+		//glfwSetWindowIcon(glwnd, 1, images);
+		//stbi_image_free(images[0].pixels);
 
 		GraphicsGL::get().reinit();
 
@@ -292,7 +306,7 @@ glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 			initwindow();
 		}
-#ifdef __SWITCH__
+#if 0 //__SWITCH__
         handleTouch();
 #endif
 		glfwPollEvents();

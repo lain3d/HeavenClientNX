@@ -92,8 +92,9 @@ namespace ms
 				else
 				{
 					// Save the Login ID if the box for it on the login panel is checked.
-					if (Setting<SaveLogin>::get().load())
+					if (Setting<SaveLogin>::get().load()) {
 						Setting<DefaultAccount>::get().save(account.name);
+					}
 
 					//AfterLoginPacket("1111").dispatch();
 

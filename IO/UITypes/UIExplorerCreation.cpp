@@ -48,7 +48,8 @@ namespace ms
 		nl::node Common = Login["Common"];
 		nl::node CustomizeChar = Login["CustomizeChar"]["000"];
 		nl::node back = nl::nx::map001["Back"]["login.img"]["back"];
-		nl::node signboard = nl::nx::mapLatest["Obj"]["login.img"]["NewChar"]["signboard"];
+		//todo: (rich) nx
+		//nl::node signboard = nl::nx::mapLatest["Obj"]["login.img"]["NewChar"]["signboard"];
 		nl::node board = CustomizeChar["board"];
 		nl::node genderSelect = CustomizeChar["genderSelect"];
 
@@ -56,7 +57,7 @@ namespace ms
 		cloud = back["27"];
 
 		sprites.emplace_back(back["14"], Point<int16_t>(250, 302));
-		sprites.emplace_back(signboard["2"], DrawArgument(Point<int16_t>(234, 235), 2.0f));
+		//sprites.emplace_back(signboard["2"], DrawArgument(Point<int16_t>(234, 235), 2.0f));
 		sprites_gender_select.emplace_back(board["genderTop"], Point<int16_t>(486, 95));
 		sprites_gender_select.emplace_back(board["boardMid"], Point<int16_t>(486, 209));
 		sprites_gender_select.emplace_back(board["boardBottom"], Point<int16_t>(486, 329));

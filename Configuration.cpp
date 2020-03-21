@@ -35,6 +35,8 @@ namespace ms
 		settings.emplace<SFXVolume>();
 		settings.emplace<SaveLogin>();
 		settings.emplace<DefaultAccount>();
+		settings.emplace<SavePassword>();
+		settings.emplace<DefaultPassword>();
 		settings.emplace<DefaultWorld>();
 		settings.emplace<DefaultChannel>();
 		settings.emplace<DefaultRegion>();
@@ -61,6 +63,15 @@ namespace ms
 		settings.emplace<MiniMapSimpleMode>();
 		settings.emplace<MiniMapDefaultHelpers>();
 
+		settings.emplace<Joystick_Y>();
+		settings.emplace<Joystick_X>();
+		settings.emplace<Joystick_B>();
+		settings.emplace<Joystick_A>();
+		settings.emplace<Joystick_LB>();
+		settings.emplace<Joystick_LT>();
+		settings.emplace<Joystick_RB>();
+		settings.emplace<Joystick_RT>();
+
 		load();
 	}
 
@@ -71,16 +82,18 @@ namespace ms
 
 	void Configuration::load()
 	{
-		std::unordered_map<std::string, std::string> rawsettings;
+		std::map<std::string, std::string> rawsettings;
 		std::ifstream file(FILENAME);
 
 		if (file.is_open())
 		{
+		    printf("Opened settings file successfully...\n");
 			// Go through the file line for line.
 			std::string line;
 
 			while (getline(file, line))
 			{
+                std::cout << "setting line: " << line << std::endl;
 				// If the setting is not empty, load the value.
 				size_t split = line.find('=');
 
@@ -88,7 +101,7 @@ namespace ms
 				{
 					rawsettings.emplace(
 						line.substr(0, split - 1),
-						line.substr(split + 2)
+						line.substr(split + 2) /*, line.length() - (split - 1) - 2)*/
 					);
 				}
 			}
@@ -100,7 +113,7 @@ namespace ms
 			auto rsiter = rawsettings.find(setting.second->name);
 
 			if (rsiter != rawsettings.end())
-				setting.second->value = rsiter->second;
+				setting.second->value = rsiter->second.substr(0, rsiter->second.length()-1);
 		}
 	}
 
@@ -113,7 +126,7 @@ namespace ms
 		{
 			// Save settings line by line.
 			for (auto& setting : settings)
-				config << setting.second->to_string() << std::endl;
+				config << setting.second->to_string() << "\n";
 			}
 		}
 

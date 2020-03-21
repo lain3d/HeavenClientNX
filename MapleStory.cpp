@@ -39,7 +39,6 @@ namespace ms
 {
 	Error init()
 	{
-
 		printf("[*] Initializing window.\n");
         if (Error error = Window::get().init()) {
 			printf("[!] Error initializing window.\n");
@@ -102,6 +101,7 @@ namespace ms
 		Stage::get().update();
 		UI::get().update();
 		Session::get().read();
+		Music::update_context();
 	}
 
 	void draw(float alpha)
@@ -117,8 +117,9 @@ namespace ms
 	    bool is_connected = Session::get().is_connected();
 	    bool not_quitted = UI::get().not_quitted();
 	    bool not_closed = Window::get().not_closed();
+	    bool not_exiting = appletMainLoop();
 
-		return not_quitted && not_closed;
+		return not_exiting && not_quitted && not_closed;
 	}
 
 	void loop()
@@ -134,6 +135,7 @@ namespace ms
 
 		bool show_fps = Configuration::get().get_show_fps();
         printf("[*] Starting loop,\n");
+        appletLockExit();
         //int counter = 0;
 		while (running())
 		{
@@ -210,5 +212,9 @@ int main()
 	ms::ScreenResolution();
 	ms::start();
 
-	return 0;
+	printf("[*] Terminating GLFW...\n");
+	glfwTerminate();
+	printf("[*] Exiting...\n");
+    appletUnlockExit();
+	return EXIT_SUCCESS;
 }

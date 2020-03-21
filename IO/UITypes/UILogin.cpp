@@ -49,14 +49,14 @@ namespace ms
 		nl::node title = nl::nx::ui["Login.img"]["Title"];
 		nl::node common = nl::nx::ui["Login.img"]["Common"];
 
-		nl::node prettyLogo = nl::nx::mapPretty["Back"]["login.img"]["ani"]["16"];
+		//nl::node prettyLogo = nl::nx::mapPretty["Back"]["login.img"]["ani"]["16"];
 
 		sprites.emplace_back(back["11"], Point<int16_t>(400, 300));
 		sprites.emplace_back(ani["17"], Point<int16_t>(129, 283));
 		sprites.emplace_back(ani["18"], Point<int16_t>(306, 252));
 		sprites.emplace_back(ani["19"], Point<int16_t>(379, 207));
 		sprites.emplace_back(back["35"], Point<int16_t>(399, 260));
-		sprites.emplace_back(prettyLogo, Point<int16_t>(394, 173));
+		//sprites.emplace_back(prettyLogo, Point<int16_t>(394, 173));
 		sprites.emplace_back(title["signboard"], Point<int16_t>(391, 330));
 		sprites.emplace_back(common["frame"], Point<int16_t>(400, 300));
 
@@ -120,6 +120,7 @@ namespace ms
 		{
 			account.change_text(Setting<DefaultAccount>::get().load());
 			password.set_state(Textfield::State::FOCUSED);
+			password.change_text(Setting<DefaultPassword>::get().load());
 		}
 		else
 		{

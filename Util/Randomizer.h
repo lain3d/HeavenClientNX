@@ -19,6 +19,7 @@
 
 #include <cstdint>
 #include <random>
+#include <switch.h>
 
 namespace ms
 {
@@ -54,8 +55,9 @@ namespace ms
 				return from;
 
 			std::uniform_real_distribution<T> range(from, to);
-			std::random_device rd;
+			static std::random_device rd;
 			std::default_random_engine engine{ rd() };
+            engine.seed(randomGet64());
 
 			return range(engine);
 		}
@@ -73,8 +75,10 @@ namespace ms
 				return from;
 
 			std::uniform_int_distribution<T> range(from, to - 1);
-			std::random_device rd;
+			static std::random_device rd;
 			std::default_random_engine engine{ rd() };
+			engine.seed(randomGet64());
+			//engine.seed(get_random_string());
 
 			return range(engine);
 		}

@@ -56,7 +56,7 @@ namespace ms
 		channelid = Setting<DefaultChannel>::get().load();
 		uint8_t regionid = Setting<DefaultRegion>::get().load();
 
-		nl::node obj = nl::nx::mapLatest["Obj"]["login.img"];
+		nl::node obj = nl::nx::map["Obj"]["login.img"];
 		nl::node login = nl::nx::ui["Login.img"];
 		worldselect = login["WorldSelect"];
 		worldsrc = worldselect["BtWorld"]["release"];
@@ -65,7 +65,7 @@ namespace ms
 
 		set_region(regionid);
 
-		sprites.emplace_back(obj["WorldSelect"]["default"][0], background_pos);
+		sprites.emplace_back(obj["WorldSelect"]["neoCity"][0], background_pos);
 
 		std::vector<std::string> backgrounds = { "cernium" };
 		auto backgrounds_size = backgrounds.size();

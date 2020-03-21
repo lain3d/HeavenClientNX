@@ -12,7 +12,6 @@ if(SWITCH_LIBNX)
     add_definitions(-D_FILE_OFFSET_BITS=64)
     add_definitions(-D_LARGEFILE_SOURCE=1)
     add_definitions(-DPRAGMA_ONCE=1)
-    include_directories("$ENV{PORTLIBS_PREFIX}/include")
     include_directories("$ENV{DEVKITPRO}/libnx/include")
     add_compile_options(-march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE -mcpu=cortex-a57+crc+fp+simd)
     add_compile_options(-fsigned-char -Wno-strict-aliasing -Wfatal-errors -Wno-sign-compare)
@@ -454,62 +453,48 @@ add_executable(HeavenClient
         MapleStory.h
         resource.h
         Timer.h
+        Audio/membuf.cpp
+        Audio/membuf.h
         switch_wrapper.c)
 
-target_link_libraries(HeavenClient /home/rich/HeavenClient/HeavenClient/nlnx/switch-build/libNoLifeNx.a)
-TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/nlnx)
-#target_link_libraries(HeavenClient /home/rich/HeavenClient/HeavenClient/nlnx/)
-
-#target_link_libraries(HeavenClient lz4)
-target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/nlnx/lz4-1.8.2/lib/liblz4.a)
-
-#INCLUDE(FindFreetype)
-#IF(NOT FREETYPE_FOUND)
-#    FIND_LIBRARY(FREETYPE_LIBRARIES NAMES libfreetype freetype.dll PATHS "./libs/MacOS" "./libs/Windows" DOC "Freetype library")
-#    FIND_PATH(FREETYPE_INCLUDE_DIRS ftbuild.h "./includes" DOC "Freetype includes")
-#ENDIF(NOT FREETYPE_FOUND)
-
-
-#INCLUDE_DIRECTORIES(${FREETYPE_INCLUDE_DIRS})
-#TARGET_LINK_LIBRARIES(HeavenClient ${FREETYPE_LIBRARIES})
-
-
 if(SWITCH_LIBNX)
-    target_link_libraries(HeavenClient "glad")
+    target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/../alure/switch-build/libalure2_s.a)
+    target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/../glad/lib/libglad.a)
     target_link_libraries(HeavenClient "EGL")
     target_link_libraries(HeavenClient "glapi")
     target_link_libraries(HeavenClient "drm_nouveau")
     target_link_libraries(HeavenClient "pthread")
     target_link_libraries(HeavenClient "nx")
-    TARGET_LINK_LIBRARIES(HeavenClient freetype)
-    TARGET_LINK_LIBRARIES(HeavenClient bz2)
-    TARGET_LINK_LIBRARIES(HeavenClient png)
+    target_link_libraries(HeavenClient freetype)
+    target_link_libraries(HeavenClient bz2)
+    target_link_libraries(HeavenClient png)
     target_link_libraries(HeavenClient "m")
     target_link_libraries(HeavenClient "z")
     target_link_libraries(HeavenClient "mbedtls")
     target_link_libraries(HeavenClient "mbedcrypto")
+    target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/../openal-soft/lib/libopenal.a)
+    target_link_libraries(HeavenClient "SDL2")
+    target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/../glfw/build/src/libglfw3.a)
+    target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/nlnx/lz4-1.8.2/lib/liblz4.a)
+    target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/nlnx/switch-build/libNoLifeNx.a)
 
-#    target_link_libraries(HeavenClient "nx")
+    TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/../glad/include)
+    TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /home/rich/HeavenClient/glfw/include)
+    #TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/../glfw/include/GLFW)
+    #TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /opt/devkitpro/portlibs/switch/include/GLFW)
+    TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /opt/devkitpro/portlibs/switch/include/GL)
+    TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /home/rich/HeavenClient/HeavenClient/asio-1.12.2/include)
+    TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /opt/devkitpro/portlibs/switch/include/freetype2)
+    TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /opt/devkitpro/portlibs/switch/include/mbedtls)
+    TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/../openal-soft/include)
+    #TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /opt/devkitpro/portlibs/switch/include)
+    TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/nlnx)
+    TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/../alure/include)
+
 endif()
 
-TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /opt/devkitpro/portlibs/switch/include/glad)
-TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /opt/devkitpro/portlibs/switch/include/GLFW)
-TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /opt/devkitpro/portlibs/switch/include/GL)
-TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /home/rich/HeavenClient/HeavenClient/asio-1.12.2/include)
-TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /opt/devkitpro/portlibs/switch/include/freetype2)
-TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /opt/devkitpro/portlibs/switch/include)
+include_directories("$ENV{PORTLIBS_PREFIX}/include")
 
-#TARGET_LINK_LIBRARIES(HeavenClient "${PROJECT_SOURCE_DIR}/glad/build/libglad.a")
-#TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/glad/build/include)
-
-#TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}}/glfw-3.3.2)
-target_link_libraries(HeavenClient glfw3)
-#target_link_libraries(HeavenClient EGL)
-#target_link_libraries(HeavenClient GLEW)
-
-
-#target_link_libraries(HeavenClient X11)
-#target_link_libraries(HeavenClient dl)
 target_link_libraries(HeavenClient pthread)
 
 TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}}/stb)
@@ -521,5 +506,5 @@ set(GAMENAME "HeavenClient")
 add_custom_command(TARGET HeavenClient POST_BUILD
         COMMAND nacptool --create "${GAMENAME}" "rich" "1.0.0-nx" "${CMAKE_BINARY_DIR}/${NRONAME}.nacp"
         COMMAND aarch64-none-elf-strip -o "${CMAKE_BINARY_DIR}/${BINARY_NAME}_stripped" "${CMAKE_BINARY_DIR}/${BINARY_NAME}"
-        COMMAND elf2nro "${CMAKE_BINARY_DIR}/${BINARY_NAME}" "${CMAKE_BINARY_DIR}/${NRONAME}.nro" --icon="${CMAKE_SOURCE_DIR}/Icon.png" --nacp="${CMAKE_BINARY_DIR}/${NRONAME}.nacp"
+        COMMAND elf2nro "${CMAKE_BINARY_DIR}/${BINARY_NAME}" "${CMAKE_BINARY_DIR}/${NRONAME}.nro" --icon="${CMAKE_SOURCE_DIR}/ms_icon.jpg" --nacp="${CMAKE_BINARY_DIR}/${NRONAME}.nacp"
         )

@@ -18,20 +18,20 @@
 #pragma once
 
 #include <typeindex>
-#include <unordered_map>
+#include <map>
 #include <memory>
 
 namespace ms
 {
 	template <typename T>
-	// An unordered map which uses the type as key.
+	// A map which uses the type as key.
 	class TypeMap
 	{
 	public:
 		using t_ptr = typename std::unique_ptr<T>;
 		using pair = typename std::pair<std::type_index, t_ptr>;
 		using cpair = typename std::pair<const std::type_index, t_ptr>;
-		using underlying_map = typename std::unordered_map<std::type_index, t_ptr>;
+		using underlying_map = typename std::map<std::type_index, t_ptr>;
 
 		template <typename D, typename...Args>
 		D* emplace(Args&& ... args)

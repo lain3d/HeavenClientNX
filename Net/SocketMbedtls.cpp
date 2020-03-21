@@ -3,6 +3,7 @@
 //
 
 #include "SocketMbedtls.h"
+#include <iostream>
 
 //#ifdef USE_MBEDTLS
 namespace ms
@@ -22,7 +23,7 @@ namespace ms
 	bool SocketMbedtls::open(const char* address, const char* port)
 	{
 		int status;
-		int error = mbedtls_net_connect(&ctx, "192.168.1.156"/*address*/, port, MBEDTLS_NET_PROTO_TCP);
+		int error = mbedtls_net_connect(&ctx, address, port, MBEDTLS_NET_PROTO_TCP);
 		int read;
 
 		if (!error) {
@@ -37,7 +38,9 @@ namespace ms
 				return (read == HANDSHAKE_LEN) && !error;
 			}
 		} else {
-			printf("Socket error %x\n", error);
+			//printf("Socket error %x\n", error);
+
+            printf("socket error %c%04X",(error<0)?'-':' ',(error<0)?-error:error);
 		}
 		return true;
 	}

@@ -26,6 +26,7 @@
 #include <string>
 #include <type_traits>
 #include <functional>
+#include <map>
 
 namespace ms
 {
@@ -183,6 +184,31 @@ namespace ms
 			using Entry::Entry;
 		};
 
+        class KeyEntry : public Entry
+        {
+
+        public:
+            void save(short num) {
+                value = std::to_string(num);
+            }
+
+            short load() const
+            {
+                std::cout << "loading val: " << value << " length: " << value.length() << std::endl;
+                short val;
+                if (value.length() == 1) {
+                	val = (char) value[0];
+                } else {
+                	val = string_conversion::or_zero<short>(value);
+                }
+                std::cout << "after val: " << val << std::endl;
+                return val;
+            }
+
+        protected:
+            using Entry::Entry;
+        };
+
 		// Setting which converts to a byte.
 		class ByteEntry : public IntegerEntry<uint8_t>
 		{
@@ -215,7 +241,7 @@ namespace ms
 		template <typename T>
 		friend struct Setting;
 
-		const char* FILENAME = "Settings";
+		const char* FILENAME = "HeavenClient/Settings";
 		const char* TITLE = "MapleStory";
 		const char* VERSION = "210.1";
 		const char* JOINLINK = "https://www.nexon.com/account/en/create";
@@ -284,13 +310,13 @@ namespace ms
 	// The normal font which will be used.
 	struct FontPathNormal : public Configuration::StringEntry
 	{
-		FontPathNormal() : StringEntry("FontPathNormal", "fonts/Roboto/Roboto-Regular.ttf") {}
+		FontPathNormal() : StringEntry("FontPathNormal", "HeavenClient/fonts/Roboto/Roboto-Regular.ttf") {}
 	};
 
 	// The bold font which will be used.
 	struct FontPathBold : public Configuration::StringEntry
 	{
-		FontPathBold() : StringEntry("FontPathBold", "fonts/Roboto/Roboto-Bold.ttf") {}
+		FontPathBold() : StringEntry("FontPathBold", "HeavenClient/fonts/Roboto/Roboto-Bold.ttf") {}
 	};
 
 	// Music Volume, a number from 0 to 100.
@@ -316,6 +342,16 @@ namespace ms
 	{
 		DefaultAccount() : StringEntry("Account", "") {}
 	};
+
+    struct SavePassword : public Configuration::BoolEntry
+    {
+        SavePassword() : BoolEntry("SavePassword", "false") {}
+    };
+
+    struct DefaultPassword : public Configuration::StringEntry
+    {
+        DefaultPassword() : StringEntry("Password", "") {}
+    };
 
 	// The last used world.
 	struct DefaultWorld : public Configuration::ByteEntry
@@ -463,6 +499,46 @@ namespace ms
 	{
 		MiniMapDefaultHelpers() : BoolEntry("MiniMapDefaultHelpers", "false") {}
 	};
+
+    struct Joystick_Y : public Configuration::KeyEntry
+    {
+        Joystick_Y() : KeyEntry("Joystick_Y", "I") {}
+    };
+
+    struct Joystick_X : public Configuration::KeyEntry
+    {
+        Joystick_X() : KeyEntry("Joystick_X", "S") {}
+    };
+
+    struct Joystick_B : public Configuration::KeyEntry
+    {
+        Joystick_B() : KeyEntry("Joystick_B", "D") {}
+    };
+
+    struct Joystick_A : public Configuration::KeyEntry
+    {
+        Joystick_A() : KeyEntry("Joystick_A", "A") {}
+    };
+    
+    struct Joystick_LB : public Configuration::KeyEntry
+	{
+		Joystick_LB() : KeyEntry("Joystick_LB", "P") {}
+	};
+
+    struct Joystick_LT : public Configuration::KeyEntry
+    {
+        Joystick_LT() : KeyEntry("Joystick_LT", "W") {}
+    };
+
+    struct Joystick_RB : public Configuration::KeyEntry
+    {
+        Joystick_RB() : KeyEntry("Joystick_RB", "K") {}
+    };
+
+    struct Joystick_RT : public Configuration::KeyEntry
+    {
+        Joystick_RT() : KeyEntry("Joystick_RT", "J") {}
+    };
 
 	template <typename T>
 	// Can be used to access settings.
