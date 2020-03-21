@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/lain3d/NoLifeNx
 	branch = switch
-	commit = 451e55708415b35e2c3c415a8896a3164f19559c
-	parent = b8bc8a73575bf0f2595fe3658e0b8d22a5a3cd33
+	commit = 82642e8ac83d5a85693a795603759348e54af49c
+	parent = 396ca848a6477ac2137011808fd34a36febb4319
 	method = merge
 	cmdver = 0.4.1
