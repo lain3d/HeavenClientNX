@@ -173,7 +173,6 @@ namespace ms
 
 		std::string account_text = account.get_text();
 		std::string password_text = password.get_text();
-		password_text = "xxxxx";
 
 		std::function<void()> okhandler = [&, password_text]()
 		{
