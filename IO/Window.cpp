@@ -31,7 +31,7 @@
 #ifdef WIN32
 #include <Windows.h>
 #else
-#include "stb/stb_image.h"
+#include "stb_image.h"
 #endif
 
 #ifdef __SWITCH__

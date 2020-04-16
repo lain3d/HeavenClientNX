@@ -475,8 +475,8 @@ if(SWITCH_LIBNX)
     target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/libs/openal-soft/lib/libopenal.a)
     target_link_libraries(HeavenClient "SDL2")
     target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/libs/glfw/build/src/libglfw3.a)
-    target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/libs/NoLifeNx/lz4-1.8.2/lib/liblz4.a)
-    target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/libs/NoLifeNx/switch-build/libNoLifeNx.a)
+    target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/libs/NoLifeNx/nlnx/lz4-1.8.2/lib/liblz4.a)
+    target_link_libraries(HeavenClient ${PROJECT_SOURCE_DIR}/libs/NoLifeNx/nlnx/switch-build/libNoLifeNx.a)
 
     TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/libs/glad/include)
     TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC /home/rich/HeavenClient/glfw/include)
@@ -489,13 +489,12 @@ if(SWITCH_LIBNX)
     TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/libs/NoLifeNx)
     TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/libs/alure/include)
 
+    TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}/libs/stb)
 endif()
 
 include_directories("$ENV{PORTLIBS_PREFIX}/include")
 
 target_link_libraries(HeavenClient pthread)
-
-TARGET_INCLUDE_DIRECTORIES(HeavenClient PUBLIC ${PROJECT_SOURCE_DIR}}/stb)
 
 set(BINARY_NAME "HeavenClient")
 set(NRONAME "HeavenClient")
