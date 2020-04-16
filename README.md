@@ -16,6 +16,9 @@ HeavenClient is a custom, made-from-scratch game client.
 ## Setting up configuration
 - Configure your IP address, account, password, and controls (keyboard mappings to switch controller) all in the Settings file that you put in your ```/switch/HeavenClient``` directory. Note that you can use special keys like left ctrl, alt, etc if you put the 'codes' from glfw3 instead of letters. See [here.](https://github.com/lain3d/glfw/blob/4373905b73468c3f884f3a2560b592521a5a923e/include/GLFW/glfw3.h#L361)
 
+## Running
+- Assuming you've never used Switch homebrew before and you don't know how to open homebrew. With the latest version of [Atmosphere](https://github.com/Atmosphere-NX/Atmosphere/releases), you simply hold the "RB" button while opening any game/application. This will open the homebrew menu. If you correctly put the nro in your "switch" directory of the SD card, then you should see the client in the Homebrew menu. 
+
 ## Quick changes / debugging 
 If for whatever reason the client doesn't start, you will probably want to figure out why. I've added debug prints in the majority of the startup phase. Also, the following method will let you update the client without moving it to your sd card each time.
 - Go to the nx-link tool located at ```/opt/devkitpro/tools/bin```
